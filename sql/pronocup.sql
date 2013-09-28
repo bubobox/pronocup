@@ -25,13 +25,13 @@ DROP TABLE IF EXISTS `phases`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `phases` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(100) NOT NULL,
   `code` int(11) NOT NULL,
   `competition` varchar(100) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id_UNIQUE` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -40,6 +40,7 @@ CREATE TABLE `phases` (
 
 LOCK TABLES `phases` WRITE;
 /*!40000 ALTER TABLE `phases` DISABLE KEYS */;
+INSERT INTO `phases` VALUES (1,'A',32,'World Cup 2014');
 /*!40000 ALTER TABLE `phases` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -51,7 +52,7 @@ DROP TABLE IF EXISTS `users`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `users` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `username` varchar(20) NOT NULL,
   `password` varchar(32) NOT NULL,
   `is_superuser` tinyint(1) NOT NULL DEFAULT '0',
@@ -59,9 +60,10 @@ CREATE TABLE `users` (
   `club_id` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id_UNIQUE` (`id`),
+  UNIQUE KEY `username_UNIQUE` (`username`),
   KEY `user2club` (`club_id`),
   CONSTRAINT `user2club` FOREIGN KEY (`club_id`) REFERENCES `clubs` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -70,6 +72,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
+INSERT INTO `users` VALUES (1,'kristofvbk','abc123',0,'kristof.verbraeken@gmail.com',1);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -81,10 +84,10 @@ DROP TABLE IF EXISTS `clubs`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `clubs` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(100) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -93,6 +96,7 @@ CREATE TABLE `clubs` (
 
 LOCK TABLES `clubs` WRITE;
 /*!40000 ALTER TABLE `clubs` DISABLE KEYS */;
+INSERT INTO `clubs` VALUES (1,'BuboClub'),(2,'BuboHack');
 /*!40000 ALTER TABLE `clubs` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -104,14 +108,14 @@ DROP TABLE IF EXISTS `scores`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `scores` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `prediction_id` int(11) NOT NULL,
   `result` int(11) NOT NULL DEFAULT '0',
   `score_calculation` varchar(100) NOT NULL DEFAULT 'Default',
   PRIMARY KEY (`id`),
   KEY `score2prediction` (`prediction_id`),
   CONSTRAINT `score2prediction` FOREIGN KEY (`prediction_id`) REFERENCES `predictions` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -120,6 +124,7 @@ CREATE TABLE `scores` (
 
 LOCK TABLES `scores` WRITE;
 /*!40000 ALTER TABLE `scores` DISABLE KEYS */;
+INSERT INTO `scores` VALUES (1,1,123,'Default Calculation');
 /*!40000 ALTER TABLE `scores` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -131,8 +136,8 @@ DROP TABLE IF EXISTS `matches`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `matches` (
-  `id` int(11) NOT NULL,
-  `group_id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `phase_id` int(11) NOT NULL,
   `date` datetime NOT NULL,
   `team1` varchar(100) NOT NULL,
   `team2` varchar(100) NOT NULL,
@@ -142,9 +147,9 @@ CREATE TABLE `matches` (
   `is_processed` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   UNIQUE KEY `id_UNIQUE` (`id`),
-  KEY `match2group` (`group_id`),
-  CONSTRAINT `match2group` FOREIGN KEY (`group_id`) REFERENCES `phases` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  KEY `match2group` (`phase_id`),
+  CONSTRAINT `match2phase` FOREIGN KEY (`phase_id`) REFERENCES `phases` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -153,6 +158,7 @@ CREATE TABLE `matches` (
 
 LOCK TABLES `matches` WRITE;
 /*!40000 ALTER TABLE `matches` DISABLE KEYS */;
+INSERT INTO `matches` VALUES (1,1,'2014-01-01 00:00:00','Belgium','France',0,0,0,0);
 /*!40000 ALTER TABLE `matches` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -164,14 +170,14 @@ DROP TABLE IF EXISTS `rankings`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `rankings` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL,
   `score` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   UNIQUE KEY `id_UNIQUE` (`id`),
   KEY `ranking2user` (`user_id`),
   CONSTRAINT `ranking2user` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -180,6 +186,7 @@ CREATE TABLE `rankings` (
 
 LOCK TABLES `rankings` WRITE;
 /*!40000 ALTER TABLE `rankings` DISABLE KEYS */;
+INSERT INTO `rankings` VALUES (1,1,0);
 /*!40000 ALTER TABLE `rankings` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -191,7 +198,7 @@ DROP TABLE IF EXISTS `predictions`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `predictions` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `match_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
   `score1` int(11) NOT NULL DEFAULT '0',
@@ -202,7 +209,7 @@ CREATE TABLE `predictions` (
   KEY `prediction2user` (`user_id`),
   CONSTRAINT `prediction2match` FOREIGN KEY (`match_id`) REFERENCES `matches` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `prediction2user` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -211,6 +218,7 @@ CREATE TABLE `predictions` (
 
 LOCK TABLES `predictions` WRITE;
 /*!40000 ALTER TABLE `predictions` DISABLE KEYS */;
+INSERT INTO `predictions` VALUES (1,1,1,1,1,0);
 /*!40000 ALTER TABLE `predictions` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -223,4 +231,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2013-09-28 17:15:28
+-- Dump completed on 2013-09-28 19:52:25
