@@ -1,9 +1,6 @@
 <?php
+// Controller for static pages
 class Pages extends XController {
-
-	public function __construct() {
-		parent::__construct();
-	}
 
 	public function index() {
 		$this->_data['clubs'] = $this->Club_model->all();

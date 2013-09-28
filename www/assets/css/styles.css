@@ -712,15 +712,6 @@ ul {
 .list-unstyled li {
   display: block;
 }
-.form-signin {
-  padding: 19px 29px 29px;
-  margin: 3em auto;
-  background-color: #fff;
-  border: 1px solid #e5e5e5;
-  -moz-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), transparent 0 0 0, transparent 0 0 0;
-  -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), transparent 0 0 0, transparent 0 0 0;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), transparent 0 0 0, transparent 0 0 0;
-}
 .row {
   margin: 0 auto;
   width: 100%;
@@ -735,4 +726,36 @@ ul {
   -moz-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), transparent 0 0 0, transparent 0 0 0;
   -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), transparent 0 0 0, transparent 0 0 0;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), transparent 0 0 0, transparent 0 0 0;
+}
+.poule {
+  margin-bottom: 20px;
+}
+.poule h2 {
+  margin-bottom: 10px;
+}
+.poule .poule-head {
+  font-weight: 700;
+  border-bottom: solid 2px grey;
+  margin-bottom: 15px;
+}
+.poule .poule-game {
+  border-bottom: solid 1px;
+  padding-top: 10px;
+}
+.poule .col {
+  float: left;
+}
+.poule .match {
+  width: 60px;
+}
+.poule .time,
+.poule .venue,
+.poule .team {
+  width: 150px;
+}
+.poule .result {
+  width: 100px;
+}
+.poule .result input[type="number"] {
+  width: 80px;
 }

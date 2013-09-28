@@ -14,6 +14,7 @@ class XController extends CI_Controller {
 		$this->load->model('Score_model', 'Score_model', true);
 		$this->load->model('User_model', 'User_model', true);
 		$this->_data['application_name'] = 'Pronocup';
+		$this->_data['base'] = $this->config->item('base_url');
 	}
 
 	public function render($template) {
