@@ -1,0 +1,8 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<title><?php echo escape($application_name) ?></title>
+</head>
+<body>
+<div id="page">
