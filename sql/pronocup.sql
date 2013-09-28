@@ -18,6 +18,32 @@ USE `pronocup`;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
+-- Table structure for table `phases`
+--
+
+DROP TABLE IF EXISTS `phases`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `phases` (
+  `id` int(11) NOT NULL,
+  `name` varchar(100) NOT NULL,
+  `code` int(11) NOT NULL,
+  `competition` varchar(100) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `id_UNIQUE` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `phases`
+--
+
+LOCK TABLES `phases` WRITE;
+/*!40000 ALTER TABLE `phases` DISABLE KEYS */;
+/*!40000 ALTER TABLE `phases` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `users`
 --
 
@@ -26,12 +52,15 @@ DROP TABLE IF EXISTS `users`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `users` (
   `id` int(11) NOT NULL,
-  `username` varchar(20) DEFAULT NULL,
-  `password` varchar(32) DEFAULT NULL,
-  `is_superuser` tinyint(1) DEFAULT NULL,
+  `username` varchar(20) NOT NULL,
+  `password` varchar(32) NOT NULL,
+  `is_superuser` tinyint(1) NOT NULL DEFAULT '0',
+  `email` varchar(100) NOT NULL,
+  `club_id` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id_UNIQUE` (`id`),
-  UNIQUE KEY `username_UNIQUE` (`username`)
+  KEY `user2club` (`club_id`),
+  CONSTRAINT `user2club` FOREIGN KEY (`club_id`) REFERENCES `clubs` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -45,29 +74,26 @@ LOCK TABLES `users` WRITE;
 UNLOCK TABLES;
 
 --
--- Table structure for table `groups`
+-- Table structure for table `clubs`
 --
 
-DROP TABLE IF EXISTS `groups`;
+DROP TABLE IF EXISTS `clubs`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `groups` (
+CREATE TABLE `clubs` (
   `id` int(11) NOT NULL,
   `name` varchar(100) NOT NULL,
-  `code` int(11) NOT NULL,
-  `competition` varchar(100) NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `id_UNIQUE` (`id`)
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `groups`
+-- Dumping data for table `clubs`
 --
 
-LOCK TABLES `groups` WRITE;
-/*!40000 ALTER TABLE `groups` DISABLE KEYS */;
-/*!40000 ALTER TABLE `groups` ENABLE KEYS */;
+LOCK TABLES `clubs` WRITE;
+/*!40000 ALTER TABLE `clubs` DISABLE KEYS */;
+/*!40000 ALTER TABLE `clubs` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -117,7 +143,7 @@ CREATE TABLE `matches` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `id_UNIQUE` (`id`),
   KEY `match2group` (`group_id`),
-  CONSTRAINT `match2group` FOREIGN KEY (`group_id`) REFERENCES `groups` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `match2group` FOREIGN KEY (`group_id`) REFERENCES `phases` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -197,4 +223,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2013-09-28 16:49:20
+-- Dump completed on 2013-09-28 17:15:28
