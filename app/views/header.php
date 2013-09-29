@@ -28,6 +28,10 @@
         <p><pre><?php print_r($user); ?></pre></p>
         <?php
         	if($is_authenticated) {
-        ?><p><a href="<?php echo $base ?>index.php/pages/logout">Logout</a></p><?php
+?><ul>
+	<li><strong><?php echo escape($user->name) ?></strong></li>
+	<li><a href="<?php echo $base ?>index.php/predictions/index">Predictions</a></li>
+	<li><a href="<?php echo $base ?>index.php/pages/logout">Logout</a></li>
+</ul><?php
         	}
         ?>
