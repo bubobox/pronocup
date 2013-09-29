@@ -8,8 +8,6 @@ class Prediction_model extends CI_Model {
 	}
 	
 	function all() {
-		$m = $this->db->get(Prediction_model::TABLE)->result();
-		var_dump($m);
-		return $m;
+		return $this->db->get(Prediction_model::TABLE)->result();
 	}
 }
