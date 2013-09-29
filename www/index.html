@@ -5,56 +5,85 @@
 <!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
     <head>
         <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <title></title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width">
+        <meta name="viewport" content="width=1024">
+        <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7, IE=9">
+        <meta name="viewport" content="width=1024, maximum-scale=1.15">
+        <meta name="Author" content="Bubobox">
+        <meta name="Description" content="">
 
-        <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
-        
-				<!-- Boostrap -->	
-				<link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
-				
-        <link rel="stylesheet" href="assets/css/styles.css">
-        <link rel="stylesheet" href="assets/css/gridset.css">
+        <link rel="shortcut icon" type="image/x-icon" href="assets/app/images/favicon.ico" />
+        <link rel="stylesheet" href="assets/app/pika/ss-pika.css" type="text/css">
+        <link rel="stylesheet" href="assets/app/vendor.min.css" type="text/css">
+        <link rel="stylesheet" href="assets/app/default.min.css" type="text/css">
+        <script src="assets/app/head-script.js" type="text/javascript"></script>
 
-        <script src="js/vendor/modernizr-2.6.2.min.js"></script>
+        <title>Pronocup</title>
     </head>
+
     <body>
         <!--[if lt IE 7]>
             <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
         <![endif]-->
 
-        <!-- Sign in User -->
-        <div class="row">
-					<form id="form-create-game " class="d5-d8 form">
-		        <h2>Create your game</h2>
-		        <input type="text" class="input-block-level" placeholder="Choose the name of the group">
-		        <button class="btn btn-large btn-primary" type="submit">Invite your friends</button>
-		      </form>
-				</div>
-				
-				<div class="row">
-					<form id"form-user-signin" class="d5-d8 form">
-		        <h2>Hello username, let's gamble!</h2>
-		        <input type="text" class="input-block-level" placeholder="Choose your rockin nickname">
-		        <button class="btn btn-large btn-success" type="submit">Let's play</button>
-		      </form>
-				</div>
+        <header class="clearfix">
+            <nav role="navigation" class="left">
+                <ul class="clearfix">
+                    <li class="first"><a href="#" class="active">My cups</a></li>
+                    <li><a href="#">Standings</a></li>
+                    <li class="last"><a href="#">Poules</a></li>
+                </ul>
+            </nav>
 
-        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
-        <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+            <nav class="right">
+                <ul class="clearfix">
+                    <li class="first"><a href="#">Login</a></li>
+                    <li class="createGame last"><a href="#">Create Game</a></li>
+                </ul>
+            </nav>
+        </header>
 
-        <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.9.0.min.js"><\/script>')</script>
-        <script src="js/plugins.js"></script>
-        <script src="js/main.js"></script>
+        <div id="main" role="main" class="container">
+            <header class="clearfix">
+                <div class="left-icons">
+                    <i class="ss-star" style="color:#f2d64b;"></i>
+                    <i class="ss-star" style="color:#f2d64b;"></i>
+                    <i class="ss-star" style="color:#f2d64b;"></i>
+                </div>
 
-        <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
+                <h1>Create your game</h1>
+
+                <div class="right-icons">
+                    <i class="ss-star" style="color:#f2d64b;"></i>
+                    <i class="ss-star" style="color:#f2d64b;"></i>
+                    <i class="ss-star" style="color:#f2d64b;"></i>
+                </div>
+            </header>
+
+            <div class="content">
+                <div class="inner">
+                    <form action="" method="POST">
+                        <input type="text" placeholder="Name group" />
+                        <select>
+                            <option>WK 1</option>
+                            <option>WK 2</option>
+                            <option>WK 3</option>
+                        </select>
+
+                        <input type="button" value="Login with Facebook" name="fb" />
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <script src="assets/app/foot-script.js" type="text/javascript"></script>
+
         <script>
-            var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']];
-            (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
-            g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
-            s.parentNode.insertBefore(g,s)}(document,'script'));
+            var _gaq = [['_setAccount', 'UA-XXXXX-X'], ['_trackPageview']];
+            (function(d, t) {
+                var g = d.createElement(t), s = d.getElementsByTagName(t)[0];
+                g.src = ('https:' == location.protocol ? '//ssl' : '//www') + '.google-analytics.com/ga.js';
+                s.parentNode.insertBefore(g, s)
+            }(document, 'script'));
         </script>
     </body>
 </html>
