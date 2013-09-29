@@ -5,7 +5,6 @@ class Predictions extends XController {
 		for($i = 0; $i < count($phases); $i++) {
 			$matches = $this->Match_model->get_by_phase($phases[$i]->id);
 			$phases[$i]->matches = $matches;
-			break;
 		}
 		$this->_data['phases'] = $phases;
 		$this->render('app/predictions');

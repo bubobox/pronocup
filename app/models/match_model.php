@@ -14,6 +14,6 @@ class Match_model extends CI_Model {
 	function get_by_phase($phase_id) {
 		return $this->db->get_where(Match_model::TABLE, array(
 			'phase_id' => $phase_id,
-		));
+		))->result();
 	}
 }

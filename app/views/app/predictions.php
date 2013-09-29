@@ -22,9 +22,9 @@
 			<div class="poule-game cf">
 				<div class="col match">1</div>
 				<div class="col time">
-					<time datetime="2012-02-17"><?php echo escape($match['date']) ?></time>
+					<time datetime="2012-02-17"><?php echo escape($match->date) ?></time>
 				</div>
-				<div class="col venue">#venue</div>
+				<div class="col venue">Rio</div>
 				<div class="col team"><?php echo escape($match->team1) ?></div>
 				<div class="col team"><?php echo escape($match->team2) ?></div>
 				<div class="col result">
