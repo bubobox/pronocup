@@ -1,0 +1,13 @@
+{
+  "name": "jbFE",
+  "version": "1.0.0",
+  "dependencies": {
+    "jquery": "~1.10.2",
+	"modernizr": "latest",
+	"html5shiv": "latest",
+	"normalize-css": "latest",
+	"font-awesome": "latest",
+        "jquery-placeholder":"latest"
+  },
+  "devDependencies": {}
+}

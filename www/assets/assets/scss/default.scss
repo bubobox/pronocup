@@ -1,0 +1,72 @@
+/******** VARIABLES *******/ 
+// DARK
+// ----
+$black:#000000;
+$dark-base:#333333;
+$dark-1:lighten($dark-base,20%);
+$dark-2:lighten($dark-1,20%);
+$dark-3:lighten($dark-2,20%);
+
+// LIGHT
+// -----
+$white:#FFFFFF;
+$light-base:#F0F0F0;
+$light-1:darken($light-base,20%);
+$light-2:darken($light-1,20%);
+$light-3:darken($light-2,20%);
+
+// ACCENTS
+// -------
+$cyan:#1A616B;
+$blue:#060B75;
+$purple:#4D005E;
+$red:#750E06;
+$brown:#6B3B05;
+$default:$blue;
+$light-color-default:darken($light-base,4%) + $default;
+$dark-color-default:$dark-3 + $default;
+
+// TRANSITIONS
+// -----------
+$low-easing-time:0.2;
+$low-delay-time:0.2;
+$high-easing-time:0.5;
+$high-delay-time:1;
+$default-easing:"ease-out";
+
+// OPACITY
+// -------
+$low-opacity:0.8;
+$high-opacity:0.3;
+
+// SUSY
+// ----
+$total-columns  : 12;
+$column-width   : 4em;
+$gutter-width   : 1em;
+$grid-padding   : $gutter-width;
+
+// -------------------------
+$spacing-normal:1em;
+$spacing-low:$spacing-normal / 2;
+$spacing-max:$spacing-normal * 2;
+$spacing-ext:$spacing-max * 2;
+
+$border-normal:1px;
+$border-radius-low:2px;
+$border-radius-high:5px;
+
+$content-separator:"···";
+// -------------------------
+
+/********* PLUGINS *********/ 
+@import "susy";
+@import "compass";
+@import "compass/css3";
+@import "compass/css3/user-interface";
+@import 'stitch/stitch';
+@import "mixins/general";
+@import "mixins/webfont";
+@import "mixins/breakpoints";
+
+@import "main.scss";
