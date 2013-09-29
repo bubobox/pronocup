@@ -14,10 +14,10 @@
 				<div class="col match">Match</div>
 				<div class="col time">When</div>
 				<div class="col venue">Venue</div>
-				<div class="col team">team 1</div>
-				<div class="col team">team 1</div>
-				<div class="col result">result</div>
-				<div class="col result">result2</div>
+				<div class="col team">Team 1</div>
+				<div class="col team">Team 2</div>
+				<div class="col result">Result 1</div>
+				<div class="col result">Result 2</div>
 			</div>
 			<div class="poule-game cf">
 				<div class="col match">1</div>
