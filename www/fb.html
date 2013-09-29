@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head><script type="text/javascript">/*<![CDATA[*/
+$(document).ready(function(){
+	$.ajax({
+		url: 'http://localhost/pronocup/www/index.php/pages/create',
+		dataType: 'json',
+		data: {
+			username: 'test',
+			password: 'test',
+		},
+		type: 'POST',
+		success: function(data, textStatus, xhr) {},
+		error: function(xhr, textStatus, errorThrown) {},
+		complete: function(xhr, textStatus) {},
+	});
+});                  
+/*]]>*/</script></head>
+<body></body>
+</html>
