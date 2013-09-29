@@ -21,15 +21,19 @@ class User_model extends CI_Model {
 	}
 
 	function create($data) {
-		if(userExists($data)){
+		if(!$this->userExists($data)){
 			$this->db->insert(User_model::TABLE, $data);
 		}
 	}
 
 	function userExists($data) {
-		$query = $this->db->query("SELECT * FROM users WHERE fbid=?;",array($data->fbid));
-		if ($query->result()->num_rows() > 0) return true;
-		return false;
-
+		$res = $this->db->get_where(User_model::TABLE, array(
+			'fbid' => $data['fbid'],
+		))->result();
+		return count($res) == 1;
+		//$query = $this->db->query("SELECT * FROM users WHERE fbid=?;",array($data->fbid));
+		//return count($query->result() == 1);
+		/*if ($query->result()->num_rows() > 0) return true;
+		return false;*/
 	}
 }
