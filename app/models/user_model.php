@@ -31,9 +31,5 @@ class User_model extends CI_Model {
 			'fbid' => $data['fbid'],
 		))->result();
 		return count($res) == 1;
-		//$query = $this->db->query("SELECT * FROM users WHERE fbid=?;",array($data->fbid));
-		//return count($query->result() == 1);
-		/*if ($query->result()->num_rows() > 0) return true;
-		return false;*/
 	}
 }
