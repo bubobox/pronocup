@@ -31,7 +31,7 @@ CREATE TABLE `phases` (
   `competition` varchar(100) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id_UNIQUE` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -40,7 +40,7 @@ CREATE TABLE `phases` (
 
 LOCK TABLES `phases` WRITE;
 /*!40000 ALTER TABLE `phases` DISABLE KEYS */;
-INSERT INTO `phases` VALUES (1,'A',32,'World Cup 2014');
+INSERT INTO `phases` VALUES (1,'Group A',16,'2014 FIFA World Cup Brazil'),(2,'Group B',16,'2014 FIFA World Cup Brazil'),(3,'Group C',16,'2014 FIFA World Cup Brazil'),(4,'Group D',16,'2014 FIFA World Cup Brazil'),(5,'Group E',16,'2014 FIFA World Cup Brazil'),(6,'Group E',16,'2014 FIFA World Cup Brazil'),(7,'Group G',16,'2014 FIFA World Cup Brazil'),(8,'Group H',16,'2014 FIFA World Cup Brazil');
 /*!40000 ALTER TABLE `phases` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -53,17 +53,19 @@ DROP TABLE IF EXISTS `users`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `users` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `username` varchar(20) NOT NULL,
-  `password` varchar(32) NOT NULL,
+  `username` varchar(100) NOT NULL,
   `is_superuser` tinyint(1) NOT NULL DEFAULT '0',
   `email` varchar(100) NOT NULL,
   `club_id` int(11) NOT NULL,
+  `name` varchar(100) NOT NULL,
+  `fbid` bigint(20) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id_UNIQUE` (`id`),
   UNIQUE KEY `username_UNIQUE` (`username`),
-  KEY `user2club` (`club_id`),
-  CONSTRAINT `user2club` FOREIGN KEY (`club_id`) REFERENCES `clubs` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+  UNIQUE KEY `fbid_UNIQUE` (`fbid`),
+  UNIQUE KEY `email_UNIQUE` (`email`),
+  KEY `user2club` (`club_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -72,7 +74,6 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'kristofvbk','abc123',0,'kristof.verbraeken@gmail.com',1);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -87,7 +88,7 @@ CREATE TABLE `clubs` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(100) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -96,7 +97,6 @@ CREATE TABLE `clubs` (
 
 LOCK TABLES `clubs` WRITE;
 /*!40000 ALTER TABLE `clubs` DISABLE KEYS */;
-INSERT INTO `clubs` VALUES (1,'BuboClub'),(2,'BuboHack');
 /*!40000 ALTER TABLE `clubs` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -113,9 +113,8 @@ CREATE TABLE `scores` (
   `result` int(11) NOT NULL DEFAULT '0',
   `score_calculation` varchar(100) NOT NULL DEFAULT 'Default',
   PRIMARY KEY (`id`),
-  KEY `score2prediction` (`prediction_id`),
-  CONSTRAINT `score2prediction` FOREIGN KEY (`prediction_id`) REFERENCES `predictions` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+  KEY `score2prediction` (`prediction_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -124,7 +123,6 @@ CREATE TABLE `scores` (
 
 LOCK TABLES `scores` WRITE;
 /*!40000 ALTER TABLE `scores` DISABLE KEYS */;
-INSERT INTO `scores` VALUES (1,1,123,'Default Calculation');
 /*!40000 ALTER TABLE `scores` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -147,9 +145,8 @@ CREATE TABLE `matches` (
   `is_processed` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   UNIQUE KEY `id_UNIQUE` (`id`),
-  KEY `match2group` (`phase_id`),
-  CONSTRAINT `match2phase` FOREIGN KEY (`phase_id`) REFERENCES `phases` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+  KEY `match2group` (`phase_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=49 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -158,7 +155,7 @@ CREATE TABLE `matches` (
 
 LOCK TABLES `matches` WRITE;
 /*!40000 ALTER TABLE `matches` DISABLE KEYS */;
-INSERT INTO `matches` VALUES (1,1,'2014-01-01 00:00:00','Belgium','France',0,0,0,0);
+INSERT INTO `matches` VALUES (1,1,'2014-06-12 17:00:00','Belgium','The Netherlands',0,0,0,0),(2,1,'2014-06-12 13:00:00','Belgium','The Netherlands',0,0,0,0),(3,1,'2014-06-17 16:00:00','Belgium','The Netherlands',0,0,0,0),(4,1,'2014-06-18 17:00:00','Belgium','The Netherlands',0,0,0,0),(5,1,'2014-06-13 17:00:00','Belgium','The Netherlands',0,0,0,0),(6,1,'2014-06-23 17:00:00','Belgium','The Netherlands',0,0,0,0),(7,2,'2014-06-13 16:00:00','Belgium','The Netherlands',0,0,0,0),(8,2,'2014-06-13 18:00:00','Belgium','The Netherlands',0,0,0,0),(9,2,'2014-06-18 19:00:00','Belgium','The Netherlands',0,0,0,0),(10,2,'2014-06-18 13:00:00','Belgium','The Netherlands',0,0,0,0),(11,2,'2014-06-23 13:00:00','Belgium','The Netherlands',0,0,0,0),(12,2,'2014-06-23 13:00:00','Belgium','The Netherlands',0,0,0,0),(13,3,'2014-06-14 13:00:00','Belgium','The Netherlands',0,0,0,0),(14,3,'2014-06-14 19:00:00','Brussel','The Netherlands',0,0,0,0),(15,3,'2014-06-19 13:00:00','Belgium','The Netherlands',0,0,0,0),(16,3,'2014-06-19 19:00:00','Belgium','The Netherlands',0,0,0,0),(17,3,'2014-06-24 16:00:00','Belgium','The Netherlands',0,0,0,0),(18,3,'2014-06-24 17:00:00','Belgium','The Netherlands',0,0,0,0),(19,4,'2014-06-14 16:00:00','Brussel','The Netherlands',0,0,0,0),(20,4,'2014-06-14 21:00:00','Belgium','The Netherlands',0,0,0,0),(21,4,'2014-06-19 16:00:00','Belgium','The Netherlands',0,0,0,0),(22,4,'2014-06-20 13:00:00','Brussels','The Netherlands',0,0,0,0),(23,4,'2014-06-24 13:00:00','Belgium','The Netherlands',0,0,0,0),(24,4,'2014-06-24 13:00:00','Belgium','The Netherlands',0,0,0,0),(25,5,'2014-06-15 19:00:00','Belgium','The Netherlands',0,0,0,0),(26,5,'2014-06-15 16:00:00','Belgium','The Netherlands',0,0,0,0),(27,5,'2014-06-20 16:00:00','Belgium','The Netherlands',0,0,0,0),(28,5,'2014-06-20 19:00:00','Belgium','The Netherlands',0,0,0,0),(29,5,'2014-06-25 16:00:00','Belgium','The Netherlands',0,0,0,0),(30,5,'2014-06-25 17:00:00','Belgium','The Netherlands',0,0,0,0),(31,6,'2014-06-15 19:00:00','Belgium','The Netherlands',0,0,0,0),(32,6,'2014-06-16 16:00:00','Belgium','The Netherlands',0,0,0,0),(33,6,'2014-06-21 13:00:00','Belgium','The Netherlands',0,0,0,0),(34,6,'2014-06-21 18:00:00','Belgium','The Netherlands',0,0,0,0),(35,6,'2014-06-25 13:00:00','Belgium','The Netherlands',0,0,0,0),(36,6,'2014-06-25 13:00:00','Belgium','The Netherlands',0,0,0,0),(37,7,'2014-06-16 13:00:00','Belgium','The Netherlands',0,0,0,0),(38,7,'2014-06-16 19:00:00','Belgium','The Netherlands',0,0,0,0),(39,7,'2014-06-21 16:00:00','Belgium','The Netherlands',0,0,0,0),(40,7,'2014-06-22 17:00:00','Belgium','The Netherlands',0,0,0,0),(41,7,'2014-06-26 13:00:00','Belgium','The Netherlands',0,0,0,0),(42,7,'2014-06-26 13:00:00','Belgium','The Netherlands',0,0,0,0),(43,8,'2014-06-17 13:00:00','Belgium','The Netherlands',0,0,0,0),(44,8,'2014-06-17 19:00:00','Belgium','The Netherlands',0,0,0,0),(45,8,'2014-06-22 19:00:00','Belgium','The Netherlands',0,0,0,0),(46,8,'2014-06-22 13:00:00','Belgium','The Netherlands',0,0,0,0),(47,8,'2014-06-26 17:00:00','Belgium','The Netherlands',0,0,0,0),(48,8,'2014-06-16 17:00:00','Belgium','The Netherlands',0,0,0,0);
 /*!40000 ALTER TABLE `matches` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -175,9 +172,8 @@ CREATE TABLE `rankings` (
   `score` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   UNIQUE KEY `id_UNIQUE` (`id`),
-  KEY `ranking2user` (`user_id`),
-  CONSTRAINT `ranking2user` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+  KEY `ranking2user` (`user_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -186,7 +182,6 @@ CREATE TABLE `rankings` (
 
 LOCK TABLES `rankings` WRITE;
 /*!40000 ALTER TABLE `rankings` DISABLE KEYS */;
-INSERT INTO `rankings` VALUES (1,1,0);
 /*!40000 ALTER TABLE `rankings` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -206,10 +201,8 @@ CREATE TABLE `predictions` (
   `is_processed` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `prediction2match` (`match_id`),
-  KEY `prediction2user` (`user_id`),
-  CONSTRAINT `prediction2match` FOREIGN KEY (`match_id`) REFERENCES `matches` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `prediction2user` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+  KEY `prediction2user` (`user_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -218,7 +211,6 @@ CREATE TABLE `predictions` (
 
 LOCK TABLES `predictions` WRITE;
 /*!40000 ALTER TABLE `predictions` DISABLE KEYS */;
-INSERT INTO `predictions` VALUES (1,1,1,1,1,0);
 /*!40000 ALTER TABLE `predictions` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -231,4 +223,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2013-09-28 19:52:25
+-- Dump completed on 2013-09-29 12:52:47
