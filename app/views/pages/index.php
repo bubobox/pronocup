@@ -81,10 +81,9 @@
 					    }
 					},{scope: 'email'});
 			  }else{
-				  
 				  FB.api('/me', function(response) {
 	     			$.ajax({
-						url: '<?php echo $base.'index.php/pages/create' ?>',
+						url: '<?php echo $base.'index.php/pages/login' ?>',
 						dataType: 'json',
 						data: {
 							name: response.name,
@@ -95,7 +94,9 @@
 						type: 'POST',
 						success: function(data, textStatus, xhr) {},
 						error: function(xhr, textStatus, errorThrown) {},
-						complete: function(xhr, textStatus) {},
+						complete: function(xhr, textStatus) {
+							window.location = '<?php echo $base; ?>index.php/';
+						},
 					});
 				  });
 			}

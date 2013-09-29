@@ -24,3 +24,14 @@
         <!--[if lt IE 7]>
             <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
         <![endif]-->
+        <p>is_authenticated = <?php echo $is_authenticated; ?></p>
+        <p><pre><?php print_r($user); ?></pre></p>
+        <?php
+        	if($is_authenticated) {
+?><ul>
+	<li><strong><?php echo escape($user->name) ?></strong><br /><img src="" alt="" /></li>
+	<li><a href="<?php echo $base ?>index.php/predictions/index">Predictions</a></li>
+	<li><a href="<?php echo $base ?>index.php/pages/logout">Logout</a></li>
+</ul><?php
+        	}
+        ?>

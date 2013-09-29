@@ -43,18 +43,17 @@ class XController extends CI_Controller {
 		$this->_data['user'] = $this->_user;
 	}
 
-	public function login($data) {
-		$fbid = $data['fbid'];
+	public function doLogin($fbid) {
 		$user = $this->User_model->get_by_fbid($fbid);
-		//var_dump($user);
-		/*$this->session->set_userdata(array(
-			'is_authenticated' => true,
-			'user' => $user,
-		));*/
-		//redirect('/');
+		if($user) {
+			$this->session->set_userdata(array(
+				'is_authenticated' => true,
+				'user' => $user,
+			));
+		}
 	}
 
-	public function logout() {
+	public function doLogout() {
 		$this->session->set_userdata(array(
 			'is_authenticated' => false,
 			'user' => null,

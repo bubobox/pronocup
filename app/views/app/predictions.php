@@ -1,6 +1,6 @@
 <div class="row">
 	<form id="submit_user_scores"
-		action="<?php echo escape($base); ?>index.php/predictions"
+		action="<?php echo escape($base); ?>index.php/predictions/index"
 		method="post">
 		<?php
 		foreach($phases as $phase) {
@@ -37,6 +37,7 @@
 			<?php
 				}
 			?>
+			<div><button type="submit">Save</button></div>
 		</div>
 		<?php
 		}
