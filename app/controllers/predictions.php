@@ -1,5 +1,6 @@
 <?php
 class Predictions extends XController {
+
 	public function index() {
 		$phases = $this->Phase_model->all();
 		for($i = 0; $i < count($phases); $i++) {

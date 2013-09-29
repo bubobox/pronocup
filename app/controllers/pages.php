@@ -9,11 +9,17 @@ class Pages extends XController {
 		$this->_data['predictions'] = $this->Prediction_model->all();
 		$this->_data['rankings'] = $this->Ranking_model->all();
 		$this->_data['scores'] = $this->Score_model->all();
-		$this->_data['users'] = $this->User_model->all();
+		$this->_data['users'] = $this->User_model->all();		
 		$this->render('pages/index');
 	}
-	
-	public function foobar() {
-		$this->User_model->create($data);
+
+	public function json() {
+		$this->output ->set_content_type('application/json');
+		$data = array(
+			'a' => 1,
+			'b' => 2,
+			'c' => 3,
+		);
+		echo json_encode($data);
 	}
 }
