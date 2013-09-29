@@ -12,4 +12,8 @@ class Pages extends XController {
 		$this->_data['users'] = $this->User_model->all();
 		$this->render('pages/index');
 	}
+	
+	public function foobar() {
+		$this->User_model->create($data);
+	}
 }
