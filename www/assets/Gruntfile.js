@@ -6,7 +6,7 @@ module.exports = function(grunt) {
         styles: 'assets/styles',
         scss: 'assets/scss',
         scripts: 'assets/scripts',
-        images: 'assets/images',
+        images: 'assets/images'
     };
 
     grunt.initConfig({
@@ -60,7 +60,7 @@ module.exports = function(grunt) {
                         dest: '<%= config.build %>/images'
                     }]
             }
-       },
+        },
         concat: {
             head: {
                 src: [
@@ -72,8 +72,8 @@ module.exports = function(grunt) {
             foot: {
                 src: [
                     '<%= config.build %>/bower_components/jquery/jquery.js',
-                    '<%= config.build %>/bower_components/jquery-placeholder/jquery.placeholder.min.js',
                     '<%= config.build %>/bower_components/salvattore/salvattore.js',
+                    '<%= config.build %>/bower_components/jquery-placeholder/jquery.placeholder.min.js',
                     '<%= config.scripts %>/**/*.js'
                 ],
                 dest: '<%= config.tmp %>/foot-script.js'
