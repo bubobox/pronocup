@@ -15,7 +15,9 @@
 				<div class="col team">Team 1</div>
 				<div class="col team">Team 2</div>
 				<div class="col result">Bet 1</div>
+				<div class="col result">Result 1</div>
 				<div class="col result">Bet 2</div>
+				<div class="col result">Result 2</div>
 			</div>
 			<div class="poule-game cf">
 				<div class="col match">1</div>
@@ -26,10 +28,16 @@
 				<div class="col team"><?php echo escape($match->team1) ?></div>
 				<div class="col team"><?php echo escape($match->team2) ?></div>
 				<div class="col result">
-					<input type="number" placeholder="" name="prediction_<?php echo $match->prediction->id ?>_score1" value="<?php echo escape($match->prediction->score1) ?>" />
+					<strong><?php echo escape($match->prediction->score1) ?></strong>
 				</div>
 				<div class="col result">
-					<input type="number" placeholder="" name="prediction_<?php echo $match->prediction->id ?>_score2" value="<?php echo escape($match->prediction->score2) ?>" />
+					<strong><?php echo escape($match->score1) ?></strong>
+				</div>
+				<div class="col result">
+					<strong><?php echo escape($match->prediction->score2) ?></strong>
+				</div>
+				<div class="col result">
+					<strong><?php echo escape($match->score2) ?></strong>
 				</div>
 			</div>
 			<?php

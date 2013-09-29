@@ -14,10 +14,10 @@ class Pages extends XController {
 	}
 
 	public function login() {
-		$data['username']=$this->input->post('username');
-		$data['email']= $this->input->post('email');
-		$data['name']=$this->input->post('name');
-		$data['fbid']=$this->input->post('fbid');
+		$data['username'] = $this->input->post('username');
+		$data['email'] = $this->input->post('email');
+		$data['name'] = $this->input->post('name');
+		$data['fbid'] = $this->input->post('fbid');
 		$this->User_model->create($data);
 		$this->doLogin($data['fbid']);
 		$this->output->set_content_type('application/json');

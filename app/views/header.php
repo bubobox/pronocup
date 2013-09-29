@@ -29,8 +29,9 @@
         <?php
         	if($is_authenticated) {
 ?><ul>
-	<li><strong><?php echo escape($user->name) ?></strong><br /><img src="" alt="" /></li>
+	<li><strong><?php echo escape($user->name) ?></strong><br /><img src="https://graph.facebook.com/<?php echo escape($user->username) ?>/picture" alt="" /></li>
 	<li><a href="<?php echo $base ?>index.php/predictions/index">Predictions</a></li>
+	<li><a href="<?php echo $base ?>index.php/results/index">Results</a></li>
 	<li><a href="<?php echo $base ?>index.php/pages/logout">Logout</a></li>
 </ul><?php
         	}
